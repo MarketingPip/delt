@@ -209,7 +209,7 @@ def parseRobotsTxt(robotsFile="robots.txt") :
         print("Assuming nothing disallowed.")
     return blockedPaths
 
-def lastmod(f, timestamp_format=None) :
+def lastmod(f, timestamp_format) :
     """Determines the date when the file was last modified and
     returns a string with the date formatted as required for
     the lastmod tag in an xml sitemap.
@@ -222,7 +222,7 @@ def lastmod(f, timestamp_format=None) :
                     universal_newlines=True).stdout.strip()
     if len(mod) == 0 :
         mod = datetime.now().astimezone().replace(microsecond=0).isoformat()
-    if timestamp_format != None:
+    if timestamp_format is not None:
         mod = datetime.strptime(mod, '%Y-%m-%dT%H:%M:%S%z').strftime(timestamp_format)  
     return mod
 
