@@ -3,7 +3,8 @@
 # Licensed under the MIT License
 FROM ghcr.io/cicirello/pyaction:4.7.0
 
+
+COPY generatesitemap.py /generatesitemap.py
 ## Make entry point exectuable
 RUN ["chmod", "+x", "./generatesitemap.py"]
-COPY generatesitemap.py /generatesitemap.py
 ENTRYPOINT ["/generatesitemap.py"]
