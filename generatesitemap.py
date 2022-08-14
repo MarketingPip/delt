@@ -222,8 +222,8 @@ def lastmod(f, timestamp_format) :
                     universal_newlines=True).stdout.strip()
     if len(mod) == 0 :
         mod = datetime.now().astimezone().replace(microsecond=0).isoformat()
-    if timestamp_format != "None":
-        mod = datetime.strptime(mod, '%Y-%m-%dT%H:%M:%S%z').strftime(timestamp_format)  
+    if timestamp_format != "1":
+        mod = datetime.strptime(mod, '%Y-%b-%d').strftime(timestamp_format)  
     return mod
 
 def urlstring(f, baseUrl, dropExtension=False) :
