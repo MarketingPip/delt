@@ -209,7 +209,7 @@ def parseRobotsTxt(robotsFile="robots.txt") :
         print("Assuming nothing disallowed.")
     return blockedPaths
 
-def lastmod(f, date-only) :
+def lastmod(f, date_only) :
     """Determines the date when the file was last modified and
     returns a string with the date formatted as required for
     the lastmod tag in an xml sitemap.
@@ -222,9 +222,9 @@ def lastmod(f, date-only) :
                     universal_newlines=True).stdout.strip()
     if len(mod) == 0 :
         mod = datetime.now().astimezone().replace(microsecond=0).isoformat()
-    if date-only != "false":
-        date-only = '%Y-%m-%d'
-        mod = datetime.strptime(mod, '%Y-%m-%dT%H:%M:%S%z').strftime(date-only)  
+    if date_only != false:
+        date_only = '%Y-%m-%d'
+        mod = datetime.strptime(mod, '%Y-%m-%dT%H:%M:%S%z').strftime(date_only)  
     return mod
 
 def urlstring(f, baseUrl, dropExtension=False) :
@@ -288,7 +288,7 @@ def writeXmlSitemap(files, baseUrl, dropExtension=False) :
         sitemap.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         sitemap.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
         for f in files :
-            sitemap.write(xmlSitemapEntry(f, baseUrl, lastmod(f, date-only), dropExtension))
+            sitemap.write(xmlSitemapEntry(f, baseUrl, lastmod(f, date_only), dropExtension))
             sitemap.write("\n")
         sitemap.write('</urlset>\n')
 
@@ -299,7 +299,7 @@ if __name__ == "__main__" :
     includeHTML = sys.argv[3]=="true"
     includePDF = sys.argv[4]=="true"
     sitemapFormat = sys.argv[5]
-    date-only = sys.argv[6]
+    date_only = sys.argv[6]
     additionalExt = set(sys.argv[7].lower().replace(",", " ").replace(".", " ").split())
     dropExtension = sys.argv[8]=="true"
 
