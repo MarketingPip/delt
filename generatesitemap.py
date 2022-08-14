@@ -299,10 +299,10 @@ if __name__ == "__main__" :
     includeHTML = sys.argv[3]=="true"
     includePDF = sys.argv[4]=="true"
     sitemapFormat = sys.argv[5]
-    date_only = sys.argv[6]
-    additionalExt = set(sys.argv[7].lower().replace(",", " ").replace(".", " ").split())
-    dropExtension = sys.argv[8]=="true"
-
+    additionalExt = set(sys.argv[6].lower().replace(",", " ").replace(".", " ").split())
+    dropExtension = sys.argv[7]=="true"
+    date_only = sys.argv[6]	
+	
     os.chdir(websiteRoot)
     blockedPaths = parseRobotsTxt()
     
