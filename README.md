@@ -153,7 +153,7 @@ this input to anything other than `xml` will generate a plain text
 Use this to change the default timestamp format. Default: `false`.
 The `date-only` input provides the option to change the default lastmod
 date format in the generated sitemap from `YYYY-MM-DDThh:mm:ssTZD` to `YYYY-MM-DD`
-when set to `true`.
+when **not** set to `false`.
 
 
 ### `drop-html-extension`
