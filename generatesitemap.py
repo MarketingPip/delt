@@ -37,7 +37,6 @@ def gatherfiles(extensionsToInclude) :
     """Walks the directory tree discovering
     files of specified types for inclusion in
     sitemap.
-
     Keyword arguments:
     extensionsToInclude - a set of the file extensions to include in sitemap
     """
@@ -55,7 +54,6 @@ INDEX_FILENAMES = { "index.html", "index.shtml" }
 def sortname(f, dropExtension=False) :
     """Partial url to sort by, which strips out the filename
     if the filename is index.html.
-
     Keyword arguments:
     f - Filename with path
     dropExtension - true to drop extensions of .html from the filename when sorting
@@ -73,7 +71,6 @@ def sortname(f, dropExtension=False) :
 def urlsort(files, dropExtension=False) :
     """Sorts the urls with a primary sort by depth in the website,
     and a secondary sort alphabetically.
-
     Keyword arguments:
     files - list of files to include in sitemap
     dropExtension - true to drop extensions of .html from the filename when sorting
@@ -87,7 +84,6 @@ def hasMetaRobotsNoindex(f) :
     any equivalent directive including a noindex.
     Only checks head of html since required to be
     in the head if specified.
-
     Keyword arguments:
     f - Filename including path
     """
@@ -109,7 +105,6 @@ def hasMetaRobotsNoindex(f) :
 def getFileExtension(f) :
     """Gets the file extension, and returns it (in all
     lowercase). Returns None if file has no extension.
-
     Keyword arguments:
     f - file name possibly with path
     """
@@ -122,7 +117,6 @@ def isHTMLFile(f) :
     """Checks if the file is an HTML file,
     which currently means has an extension of html
     or htm.
-
     Keyword arguments:
     f - file name including path relative from the root of the website.
     """
@@ -131,7 +125,6 @@ def isHTMLFile(f) :
 def createExtensionSet(includeHTML, includePDF, additionalExt) :
     """Creates a set of file extensions for the file types to include
     in the sitemap.
-
     Keyword arguments:
     includeHTML - boolean, which if true indicates that all html related extensions
         should be included.
@@ -151,7 +144,6 @@ def createExtensionSet(includeHTML, includePDF, additionalExt) :
 def robotsBlocked(f, blockedPaths=[]) :
     """Checks if robots are blocked from acessing the
     url.
-
     Keyword arguments:
     f - file name including path relative from the root of the website.
     blockedPaths - a list of paths blocked by robots.txt
@@ -171,7 +163,6 @@ def parseRobotsTxt(robotsFile="robots.txt") :
     """Parses a robots.txt if present in the root of the
     site, and returns a list of disallowed paths. It only
     includes paths disallowed for *.
-
     Keyword arguments:
     robotsFile - the name of the robots.txt, which in production
     must be robots.txt (the default). The parameter is to enable
@@ -213,7 +204,6 @@ def lastmod(f, date_only) :
     """Determines the date when the file was last modified and
     returns a string with the date formatted as required for
     the lastmod tag in an xml sitemap.
-
     Keyword arguments:
     f - filename
     """
@@ -222,14 +212,13 @@ def lastmod(f, date_only) :
                     universal_newlines=True).stdout.strip()
     if len(mod) == 0 :
         mod = datetime.now().astimezone().replace(microsecond=0).isoformat()
-    if date_only:
+    if date_only != "false":
         date_only = '%Y-%m-%d'
         mod = datetime.strptime(mod, '%Y-%m-%dT%H:%M:%S%z').strftime(date_only)  
     return mod
 
 def urlstring(f, baseUrl, dropExtension=False) :
     """Forms a string with the full url from a filename and base url.
-
     Keyword arguments:
     f - filename
     baseUrl - address of the root of the website
@@ -254,7 +243,6 @@ xmlSitemapEntryTemplate = """<url>
 def xmlSitemapEntry(f, baseUrl, dateString, dropExtension=False) :
     """Forms a string with an entry formatted for an xml sitemap
     including lastmod date.
-
     Keyword arguments:
     f - filename
     baseUrl - address of the root of the website
@@ -265,7 +253,6 @@ def xmlSitemapEntry(f, baseUrl, dateString, dropExtension=False) :
 
 def writeTextSitemap(files, baseUrl, dropExtension=False) :
     """Writes a plain text sitemap to the file sitemap.txt.
-
     Keyword Arguments:
     files - a list of filenames
     baseUrl - the base url to the root of the website
@@ -278,7 +265,6 @@ def writeTextSitemap(files, baseUrl, dropExtension=False) :
             
 def writeXmlSitemap(files, baseUrl, dropExtension=False) :
     """Writes an xml sitemap to the file sitemap.xml.
-
     Keyword Arguments:
     files - a list of filenames
     baseUrl - the base url to the root of the website
@@ -301,7 +287,7 @@ if __name__ == "__main__" :
     sitemapFormat = sys.argv[5]
     additionalExt = set(sys.argv[6].lower().replace(",", " ").replace(".", " ").split())
     dropExtension = sys.argv[7]=="true"
-    date_only = sys.argv[8]=="false"
+    date_only = sys.argv[8]	
 	
     os.chdir(websiteRoot)
     blockedPaths = parseRobotsTxt()
