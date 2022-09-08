@@ -212,7 +212,7 @@ def lastmod(f, date_only) :
                     universal_newlines=True).stdout.strip()
     if len(mod) == 0 :
         mod = datetime.now().astimezone().replace(microsecond=0).isoformat()
-    if date_only != "false":
+    if date_only:
         date_only = '%Y-%m-%d'
         mod = datetime.strptime(mod, '%Y-%m-%dT%H:%M:%S%z').strftime(date_only)  
     return mod
@@ -287,7 +287,7 @@ if __name__ == "__main__" :
     sitemapFormat = sys.argv[5]
     additionalExt = set(sys.argv[6].lower().replace(",", " ").replace(".", " ").split())
     dropExtension = sys.argv[7]=="true"
-    date_only = sys.argv[8]	
+    date_only = sys.argv[8]
 	
     os.chdir(websiteRoot)
     blockedPaths = parseRobotsTxt()
