@@ -60,7 +60,7 @@ inputs:
   date-only:
     description: 'Indicates if sitemap timestamp should be formatted.'
     required: false
-    default: 'false'        
+    default: false  
 outputs:
   sitemap-path: 
     description: 'The path to the generated sitemap file.'
