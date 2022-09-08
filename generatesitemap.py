@@ -1,4 +1,4 @@
-#!/usr/bin/env -S python3 -B
+#!/usr/bin/env -S python3
 #
 # generate-sitemap: Github action for automating sitemap generation
 # 
